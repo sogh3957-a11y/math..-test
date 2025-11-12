@@ -1,0 +1,66 @@
+body {
+  font-family: Tahoma, sans-serif;
+  background-color: #e0f7f1; /* سبز یخی */
+  color: #333;
+  text-align: right;
+  padding: 20px;
+}
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  background-color: #fffaf0; /* شیری */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+  color: #ff69b4; /* صورتی روشن */
+  text-align: center;
+}
+
+.input-section {
+  margin-bottom: 15px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #ff69b4; /* صورتی روشن */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.result {
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f0fff0; /* سبز یخی روشن */
+  border-radius: 5px;
+  min-height: 30px;
+}
+
+.alert {
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
+}
