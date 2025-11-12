@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>آزمایشگاه ریاضی</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>آزمایشگاه ریاضی - مجموعه‌ها</h1>
+    <div class="input-section">
+      <label for="setA">مجموعه A:</label>
+      <input type="text" id="setA" placeholder="مثال: 1,2,3" />
+    </div>
+    <div class="input-section">
+      <label for="setB">مجموعه B:</label>
+      <input type="text" id="setB" placeholder="مثال: a,b,c" />
+    </div>
+
+    <div class="buttons">
+      <button onclick="calculateUnion()">اجتماع</button>
+      <button onclick="calculateIntersection()">اشتراک</button>
+      <button onclick="calculateDifference()">تفاضل</button>
+    </div>
+
+    <div id="result" class="result"></div>
+    <div id="alert" class="alert"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
