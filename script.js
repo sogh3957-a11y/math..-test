@@ -1,10 +1,10 @@
 const addButton = document.getElementById('addButton');
-const itemInput = document.getElementById('itemInput');
-const itemList = document.getElementById('itemList');
+const setInput = document.getElementById('setInput');
+const setList = document.getElementById('setList');
 const alertMsg = document.getElementById('alertMsg');
 
 addButton.addEventListener('click', () => {
-  const value = itemInput.value.trim();
+  const value = setInput.value.trim();
   if (value === '') {
     alertMsg.textContent = 'لطفاً متن را وارد کنید!';
     return;
@@ -14,15 +14,13 @@ addButton.addEventListener('click', () => {
   newItem.className = 'result-item';
   newItem.textContent = value;
 
-  // اضافه کردن به انتهای لیست بدون حذف قبلی‌ها
-  itemList.appendChild(newItem);
+  setList.appendChild(newItem);
 
-  itemInput.value = '';
+  setInput.value = '';
   alertMsg.textContent = '';
-  itemInput.focus();
+  setInput.focus();
 });
 
-// امکان زدن Enter برای اضافه کردن عنصر
-itemInput.addEventListener('keyup', (e) => {
+setInput.addEventListener('keyup', (e) => {
   if (e.key === 'Enter') addButton.click();
 });
