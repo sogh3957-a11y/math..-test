@@ -1,38 +1,26 @@
-function parseSet(input) {
-  if (!input.trim()) return [];
+const addButton = document.getElementById('addButton');
+const setInput = document.getElementById('setInput');
+const setList = document.getElementById('setList');
+const alertMsg = document.getElementById('alertMsg');
 
-  // جدا کردن عناصر مجموعه با نقطه
-  return input
-    .split(".")
-    .map(x => x.trim())
-    .filter(x => x !== "");
-}
+addButton.addEventListener('click', () => {
+  const value = setInput.value.trim();
+  if (value === '') {
+    alertMsg.textContent = 'لطفاً نام مجموعه را وارد کنید!';
+    return;
+  }
 
-function calculateUnion() {
-  const A = parseSet(document.getElementById("setA").value);
-  const B = parseSet(document.getElementById("setB").value);
+  const item = document.createElement('div');
+  item.className = 'result-item';
+  item.textContent = value;
 
-  const result = [...new Set([...A, ...B])];
+  setList.appendChild(item);
 
-  document.getElementById("result").innerText = "اجتماع: " + result.join(".");
-}
+  setInput.value = '';
+  alertMsg.textContent = '';
+  setInput.focus();
+});
 
-function calculateIntersection() {
-  const A = parseSet(document.getElementById("setA").value);
-  const B = parseSet(document.getElementById("setB").value);
-
-  const result = A.filter(x => B.includes(x));
-
-  document.getElementById("result").innerText = "اشتراک: " + result.join(".");
-}
-
-function calculateDifference() {
-  const A = parseSet(document.getElementById("setA").value);
-  const B = parseSet(document.getElementById("setB").value);
-
-  const result = A.filter(x => !B.includes(x));
-
-  document.getElementById("result").innerText = "تفاضل: " + result.join(".");
-}
-
-
+setInput.addEventListener('keyup', (e) => {
+  if (e.key === 'Enter') addButton.click();
+});
