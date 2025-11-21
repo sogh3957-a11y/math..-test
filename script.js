@@ -4,25 +4,24 @@ const setList = document.getElementById('setList');
 const alertMsg = document.getElementById('alertMsg');
 
 addButton.addEventListener('click', () => {
-  const value = setInput.value.trim() || 'مجموعه جدید'; // اگر ورودی خالی باشه نام پیش‌فرض
+  const value = setInput.value.trim();
+  if (value === '') {
+    alertMsg.textContent = 'لطفاً نام مجموعه را وارد کنید!';
+    return;
+  }
 
-  // ساخت یک آیتم جدید
   const item = document.createElement('div');
   item.className = 'result-item';
   item.textContent = value;
 
-  // اضافه کردن به انتهای لیست موجود
+  // اضافه کردن به انتهای لیست بدون حذف قبلی‌ها
   setList.appendChild(item);
 
-  // پاک کردن ورودی و پیام هشدار
   setInput.value = '';
   alertMsg.textContent = '';
-
-  // فوکوس دوباره روی input
   setInput.focus();
 });
 
-// امکان زدن Enter برای اضافه کردن مجموعه
 setInput.addEventListener('keyup', (e) => {
   if (e.key === 'Enter') addButton.click();
 });
