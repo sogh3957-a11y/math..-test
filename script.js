@@ -1,27 +1,28 @@
 const addButton = document.getElementById('addButton');
-const setInput = document.getElementById('setInput');
-const setList = document.getElementById('setList');
+const itemInput = document.getElementById('itemInput');
+const itemList = document.getElementById('itemList');
 const alertMsg = document.getElementById('alertMsg');
 
 addButton.addEventListener('click', () => {
-  const value = setInput.value.trim();
+  const value = itemInput.value.trim();
   if (value === '') {
-    alertMsg.textContent = 'لطفاً نام مجموعه را وارد کنید!';
+    alertMsg.textContent = 'لطفاً متن را وارد کنید!';
     return;
   }
 
-  const item = document.createElement('div');
-  item.className = 'result-item';
-  item.textContent = value;
+  const newItem = document.createElement('div');
+  newItem.className = 'result-item';
+  newItem.textContent = value;
 
   // اضافه کردن به انتهای لیست بدون حذف قبلی‌ها
-  setList.appendChild(item);
+  itemList.appendChild(newItem);
 
-  setInput.value = '';
+  itemInput.value = '';
   alertMsg.textContent = '';
-  setInput.focus();
+  itemInput.focus();
 });
 
-setInput.addEventListener('keyup', (e) => {
+// امکان زدن Enter برای اضافه کردن عنصر
+itemInput.addEventListener('keyup', (e) => {
   if (e.key === 'Enter') addButton.click();
 });
