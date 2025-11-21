@@ -1,38 +1,36 @@
-/* ===== بدنه صفحه ===== */
 body {
   font-family: Tahoma, sans-serif;
-  background-color: #e0f7f1; /* سبز یخی */
+  background-color: #e0f7f1;
   color: #333;
   text-align: right;
   padding: 20px;
   margin: 0;
 }
 
-/* ===== کانتینر اصلی ===== */
 .container {
   max-width: 500px;
-  margin-left: 0;       /* چسباندن به چپ */
-  margin-right: auto;   /* سمت راست خالی بمونه */
-  background-color: #fffaf0; /* شیری */
+  margin-left: 0;
+  margin-right: auto;
+  background-color: #fffaf0;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* ===== تیتر ===== */
 h1 {
-  color: #ff69b4; /* صورتی روشن */
+  color: #ff69b4;
   text-align: center;
   margin-top: 0;
 }
 
-/* ===== بخش ورودی ===== */
 .input-section {
+  display: flex;
+  gap: 10px;
   margin-bottom: 15px;
 }
 
 input[type="text"] {
-  width: 100%;
+  flex: 1;
   padding: 8px;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -44,16 +42,9 @@ input[type="text"]:focus {
   outline: none;
 }
 
-/* ===== دکمه‌ها ===== */
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
 button {
   padding: 10px 15px;
-  background-color: #ff69b4; /* صورتی روشن */
+  background-color: #ff69b4;
   border: none;
   border-radius: 5px;
   color: white;
@@ -66,32 +57,36 @@ button:hover {
   transform: translateY(-2px);
 }
 
-/* ===== نتیجه ===== */
 .result {
   margin-top: 15px;
   padding: 10px;
   border: 1px solid #ccc;
-  background-color: #f0fff0; /* سبز یخی روشن */
+  background-color: #f0fff0;
   border-radius: 5px;
   min-height: 30px;
 }
 
-/* ===== پیام هشدار ===== */
+.result-item {
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  background-color: #fffaf0;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
 .alert {
   margin-top: 10px;
   color: red;
   font-weight: bold;
 }
 
-/* ===== ریسپانسیو برای موبایل ===== */
 @media (max-width: 600px) {
   .container {
     max-width: 100%;
     padding: 15px;
   }
 
-  .buttons {
+  .input-section {
     flex-direction: column;
-    gap: 10px;
   }
 }
