@@ -35,13 +35,4 @@ function calculateDifference() {
   document.getElementById("result").innerText = "تفاضل: " + result.join(".");
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* این باعث میشه همه عناصر داخل کانتینر سمت چپ بچسبند */
-}
 
-.input-section {
-  margin-bottom: 10px;
-  width: 300px; /* میتونی عرض دلخواه بذاری یا هم‌اندازه کادر قدر مطلق */
-}
