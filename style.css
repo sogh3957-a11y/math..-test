@@ -1,11 +1,14 @@
+/* ===== بدنه صفحه ===== */
 body {
   font-family: Tahoma, sans-serif;
   background-color: #e0f7f1; /* سبز یخی */
   color: #333;
   text-align: right;
   padding: 20px;
+  margin: 0;
 }
 
+/* ===== کانتینر اصلی ===== */
 .container {
   max-width: 500px;
   margin-left: 0;       /* چسباندن به چپ */
@@ -16,11 +19,14 @@ body {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+/* ===== تیتر ===== */
 h1 {
   color: #ff69b4; /* صورتی روشن */
   text-align: center;
+  margin-top: 0;
 }
 
+/* ===== بخش ورودی ===== */
 .input-section {
   margin-bottom: 15px;
 }
@@ -30,8 +36,15 @@ input[type="text"] {
   padding: 8px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  transition: all 0.2s ease;
 }
 
+input[type="text"]:focus {
+  border-color: #ff69b4;
+  outline: none;
+}
+
+/* ===== دکمه‌ها ===== */
 .buttons {
   display: flex;
   justify-content: space-between;
@@ -45,12 +58,15 @@ button {
   border-radius: 5px;
   color: white;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 button:hover {
   opacity: 0.9;
+  transform: translateY(-2px);
 }
 
+/* ===== نتیجه ===== */
 .result {
   margin-top: 15px;
   padding: 10px;
@@ -60,8 +76,22 @@ button:hover {
   min-height: 30px;
 }
 
+/* ===== پیام هشدار ===== */
 .alert {
   margin-top: 10px;
   color: red;
   font-weight: bold;
+}
+
+/* ===== ریسپانسیو برای موبایل ===== */
+@media (max-width: 600px) {
+  .container {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
