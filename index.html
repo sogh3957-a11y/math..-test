@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>عملیات روی مجموعه‌ها و احتمال</title>
+<title>عملیات روی مجموعه‌ها</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,48 +12,33 @@
 
   <h1>عملیات روی مجموعه‌ها</h1>
 
-  <!-- مجموعه A -->
   <div class="set-row">
     <label>مجموعه A:</label>
     <input type="text" class="set-input" id="setA" placeholder="اعداد را با نقطه وارد کنید">
   </div>
 
-  <!-- مجموعه B -->
   <div class="set-row">
     <label>مجموعه B:</label>
     <input type="text" class="set-input" id="setB" placeholder="اعداد را با نقطه وارد کنید">
   </div>
 
-  <!-- دکمه + برای افزودن مجموعه‌ها -->
-  <button id="addSetBtn" class="add-btn">+</button>
-
-  <!-- بخش مجموعه‌های اضافه‌شده -->
-  <div id="extraSets"></div>
-
-</div>
-
-<!-- پنل سمت راست – احتمال پایه -->
-<div id="probPanel" class="prob-panel">
-  <h3>احتمال مجموعه‌ها</h3>
-
-  <!-- ورودی اندازه مجموعه‌ها -->
-  <div class="input-row">
-    <label for="nA">n(A) = </label>
-    <input type="number" id="nA" min="0" placeholder="تعداد اعضای A">
-  </div>
-  <div class="input-row">
-    <label for="nB">n(B) = </label>
-    <input type="number" id="nB" min="0" placeholder="تعداد اعضای B">
+  <div id="extraSetsContainer">
+    <div id="extraSets"></div>
+    <button id="addSetBtn" class="add-btn">+</button>
   </div>
 
-  <!-- پیام بازخورد -->
-  <div id="feedback" class="feedback"></div>
-
-  <!-- فرمول‌های احتمال پایه -->
-  <div class="formulas">
-    <p>P(A) = n(A) / n(S)</p>
-    <p>P(B) = n(B) / n(S)</p>
+  <div class="ops">
+    <button class="op-btn" id="unionBtn">اجتماع</button>
+    <button class="op-btn" id="interBtn">اشتراک</button>
+    <button class="op-btn" id="diffBtn">تفاضل</button>
   </div>
+
+  <div id="answerSection" class="answer-section hidden">
+    <input type="text" id="userAnswer" class="answer-input" placeholder="جواب را وارد کنید">
+    <button id="checkBtn">نمایش جواب</button>
+    <div id="correctAnswer" class="correct-answer"></div>
+  </div>
+
 </div>
 
 <script src="script.js"></script>
