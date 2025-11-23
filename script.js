@@ -29,10 +29,11 @@ document.getElementById("addSetBtn").addEventListener("click", () => {
     input.setSelectionRange(cursorPos, cursorPos);
   });
 
+  // بعد از اضافه کردن، nextSetLetter را افزایش بده
   nextSetLetter = String.fromCharCode(nextSetLetter.charCodeAt(0) + 1);
 });
 
-// اعمال listener روی مجموعه‌های اولیه برای پرانتز → اکولاد
+// اعمال listener روی مجموعه‌های اولیه (A و B) برای پرانتز → اکولاد
 document.querySelectorAll(".set-input").forEach(input => {
   input.addEventListener("input", () => {
     const cursorPos = input.selectionStart;
