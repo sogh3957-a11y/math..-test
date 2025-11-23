@@ -32,15 +32,15 @@
 
   <!-- دکمه‌های عملیات -->
   <div class="ops">
-    <button class="op-btn" onclick="showAnswerBox('union')">اجتماع</button>
-    <button class="op-btn" onclick="showAnswerBox('intersect')">اشتراک</button>
-    <button class="op-btn" onclick="showAnswerBox('diff')">تفاضل</button>
+    <button class="op-btn" id="unionBtn">اجتماع</button>
+    <button class="op-btn" id="interBtn">اشتراک</button>
+    <button class="op-btn" id="diffBtn">تفاضل</button>
   </div>
 
   <!-- بخش جواب -->
   <div id="answerSection" class="answer-section hidden">
     <input type="text" id="userAnswer" class="answer-input" placeholder="جواب را وارد کنید">
-    <button id="checkBtn" onclick="checkAnswer()">نمایش جواب</button>
+    <button id="checkBtn">نمایش جواب</button>
     <div id="correctAnswer" class="correct-answer"></div>
   </div>
 
@@ -49,3 +49,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
