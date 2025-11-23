@@ -12,32 +12,27 @@
 
   <h1>عملیات روی مجموعه‌ها</h1>
 
-  <!-- مجموعه A -->
   <div class="set-row">
     <label>مجموعه A:</label>
     <input type="text" class="set-input" id="setA" placeholder="اعداد را با نقطه وارد کنید">
   </div>
 
-  <!-- مجموعه B -->
   <div class="set-row">
     <label>مجموعه B:</label>
     <input type="text" class="set-input" id="setB" placeholder="اعداد را با نقطه وارد کنید">
   </div>
 
-  <!-- دکمه + برای افزودن مجموعه‌ها -->
-  <button id="addSetBtn" class="add-btn">+</button>
+  <div id="extraSetsContainer">
+    <div id="extraSets"></div>
+    <button id="addSetBtn" class="add-btn">+</button>
+  </div>
 
-  <!-- بخش مجموعه‌های اضافه‌شده -->
-  <div id="extraSets"></div>
-
-  <!-- دکمه‌های عملیات -->
   <div class="ops">
     <button class="op-btn" id="unionBtn">اجتماع</button>
     <button class="op-btn" id="interBtn">اشتراک</button>
     <button class="op-btn" id="diffBtn">تفاضل</button>
   </div>
 
-  <!-- بخش جواب -->
   <div id="answerSection" class="answer-section hidden">
     <input type="text" id="userAnswer" class="answer-input" placeholder="جواب را وارد کنید">
     <button id="checkBtn">نمایش جواب</button>
@@ -49,4 +44,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
