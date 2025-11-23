@@ -1,7 +1,7 @@
 let nextSetLetter = "C"; 
 let currentOperation = "";
 
-// افزودن مجموعه جدید
+// افزودن مجموعه جدید بالای دکمه +
 document.getElementById("addSetBtn").addEventListener("click", () => {
   const div = document.createElement("div");
   div.className = "set-row";
@@ -9,8 +9,8 @@ document.getElementById("addSetBtn").addEventListener("click", () => {
     <label>مجموعه ${nextSetLetter}:</label>
     <input type="text" class="set-input" id="set${nextSetLetter}" placeholder="اعداد را با نقطه وارد کنید">
   `;
-  document.getElementById("extraSets").appendChild(div);
-
+  const extraSetsDiv = document.getElementById("extraSets");
+  extraSetsDiv.prepend(div);
   nextSetLetter = String.fromCharCode(nextSetLetter.charCodeAt(0) + 1);
 });
 
@@ -18,12 +18,10 @@ document.getElementById("addSetBtn").addEventListener("click", () => {
 function getSets() {
   let inputs = document.querySelectorAll(".set-input");
   let sets = [];
-
   inputs.forEach(input => {
     let arr = input.value.trim() ? input.value.split(".").map(Number) : [];
     sets.push(arr);
   });
-
   return sets;
 }
 
@@ -50,9 +48,17 @@ function checkAnswer() {
   if (currentOperation === "union") {
     finalResult = [...new Set(sets.flat())];
   } else if (currentOperation === "intersect") {
-    finalResult = sets.reduce((a, b) => a.filter(x => b.includes(x)));
+    if (sets.length > 0) {
+      finalResult = sets.reduce((a, b) => a.filter(x => b.includes(x)));
+    } else {
+      finalResult = [];
+    }
   } else if (currentOperation === "diff") {
-    finalResult = sets.reduce((a, b) => a.filter(x => !b.includes(x)));
+    if (sets.length > 0) {
+      finalResult = sets.reduce((a, b) => a.filter(x => !b.includes(x)));
+    } else {
+      finalResult = [];
+    }
   }
 
   finalResult.sort((a, b) => a - b);
