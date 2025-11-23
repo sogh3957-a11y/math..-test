@@ -3,25 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>اضافه کردن مجموعه‌ها</title>
+<title>عملیات روی مجموعه‌ها</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-  <h1>اضافه کردن مجموعه‌ها</h1>
 
-  <div class="input-section">
-    <input type="text" id="setInput" placeholder="نام مجموعه را وارد کنید">
-    <button id="addButton">+</button>
+  <h1>عملیات روی مجموعه‌ها</h1>
+
+  <!-- مجموعه A -->
+  <div class="set-row">
+    <label>مجموعه A:</label>
+    <input type="text" class="set-input" id="setA" placeholder="اعداد را با نقطه وارد کنید">
   </div>
 
-  <div class="result" id="setList">
-    <div class="result-item">مجموعه ۱</div>
-    <div class="result-item">مجموعه ۲</div>
+  <!-- مجموعه B -->
+  <div class="set-row">
+    <label>مجموعه B:</label>
+    <input type="text" class="set-input" id="setB" placeholder="اعداد را با نقطه وارد کنید">
   </div>
 
-  <div class="alert" id="alertMsg"></div>
+  <!-- دکمه + برای افزودن مجموعه‌ها -->
+  <button id="addSetBtn" class="add-btn">+</button>
+
+  <!-- بخش مجموعه‌های اضافه‌شده -->
+  <div id="extraSets"></div>
+
+  <!-- دکمه‌های عملیات -->
+  <div class="ops">
+    <button class="op-btn" onclick="showAnswerBox('union')">اجتماع</button>
+    <button class="op-btn" onclick="showAnswerBox('intersect')">اشتراک</button>
+    <button class="op-btn" onclick="showAnswerBox('diff')">تفاضل</button>
+  </div>
+
+  <!-- بخش جواب -->
+  <div id="answerSection" class="answer-section hidden">
+    <input type="text" id="userAnswer" class="answer-input" placeholder="جواب را وارد کنید">
+    <button id="checkBtn" onclick="checkAnswer()">نمایش جواب</button>
+    <div id="correctAnswer" class="correct-answer"></div>
+  </div>
+
 </div>
 
 <script src="script.js"></script>
