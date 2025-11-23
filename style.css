@@ -9,12 +9,11 @@ body {
 
 .container {
   max-width: 500px;
-  margin-left: 0;
-  margin-right: auto;
   background-color: #fffaf0;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  float: left;
 }
 
 h1 {
@@ -37,7 +36,7 @@ h1 {
 
 .set-input {
   width: 70%;
-  padding: 8px;
+  padding: 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
@@ -48,47 +47,64 @@ h1 {
   font-size: 24px;
   border-radius: 50%;
   background-color: #ff69b4;
-  color: white;
   border: none;
+  color: white;
   cursor: pointer;
+  margin-top: 10px;
 }
 
-.ops {
+.add-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* پنل احتمال */
+.prob-panel {
+  border: 2px solid #ff69b4;
+  border-radius: 10px;
+  padding: 15px;
   margin-top: 20px;
+  background-color: #fff0f5;
+  max-width: 250px;
+  float: right;
+}
+
+.prob-panel h3 {
+  margin-top: 0;
+  text-align: center;
+  color: #ff1493;
+}
+
+.input-row {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-.op-btn {
-  flex: 1;
-  margin: 0 5px;
-  padding: 10px;
-  background-color: #ff69b4;
-  color: white;
-  border: none;
+.input-row input {
+  width: 100px;
+  padding: 5px;
   border-radius: 5px;
-  cursor: pointer;
+  border: 1px solid #ccc;
+  text-align: center;
 }
 
-.answer-section {
-  margin-top: 20px;
+.feedback {
+  height: 25px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-.hidden {
-  display: none;
+.feedback.wrong {
+  color: red;
 }
 
-.answer-input {
-  width: 65%;
-  padding: 8px;
+.feedback.correct {
+  color: green;
 }
 
-.answer-input.wrong {
-  background-color: #ffd6d6;
-  border: 2px solid red;
-}
-
-.correct-answer {
-  margin-top: 10px;
+.formulas p {
+  margin: 5px 0;
   font-weight: bold;
 }
