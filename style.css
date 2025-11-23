@@ -90,3 +90,61 @@ button:hover {
     flex-direction: column;
   }
 }
+
+/* --- بخش‌های جدید --- */
+
+.set-row {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.set-row label {
+  width: 90px;
+  font-weight: bold;
+  color: #ff69b4;
+}
+
+.set-input {
+  width: 70%;
+}
+
+.add-btn {
+  width: 45px;
+  height: 45px;
+  font-size: 24px;
+  border-radius: 50%;
+}
+
+.ops {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.op-btn {
+  flex: 1;
+  margin: 0 5px;
+}
+
+.answer-section {
+  margin-top: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.answer-input {
+  width: 65%;
+}
+
+.answer-input.wrong {
+  background-color: #ffd6d6;
+  border: 2px solid red;
+}
+
+.correct-answer {
+  margin-top: 10px;
+  font-weight: bold;
+}
