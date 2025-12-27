@@ -8,19 +8,34 @@ body {
 }
 
 .container {
-  max-width: 500px;
+  max-width: 700px;
   margin-left: 0;
   margin-right: auto;
   background-color: #fffaf0;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
 }
 
 h1 {
   color: #ff69b4;
   text-align: center;
   margin-top: 0;
+}
+
+/* بخش مجموعه‌ها سمت چپ */
+.sets-section {
+  width: 48%;
+}
+
+/* بخش عملیات و کادرها سمت راست */
+.ops-section {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .set-row {
@@ -53,34 +68,23 @@ h1 {
   cursor: pointer;
 }
 
-.ops {
-  margin-top: 20px;
+/* کادر جواب و دکمه عملیات */
+.op-block {
   display: flex;
-  justify-content: space-between;
-}
-
-.op-btn {
-  flex: 1;
-  margin: 0 5px;
-  padding: 10px;
-  background-color: #ff69b4;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.answer-section {
-  margin-top: 20px;
-}
-
-.hidden {
-  display: none;
+  gap: 10px;
+  align-items: center;
 }
 
 .answer-input {
-  width: 65%;
+  flex: 1;
   padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.answer-input.correct {
+  background-color: #d4fdd4;
+  border: 2px solid green;
 }
 
 .answer-input.wrong {
@@ -88,7 +92,11 @@ h1 {
   border: 2px solid red;
 }
 
-.correct-answer {
-  margin-top: 10px;
-  font-weight: bold;
+.op-btn {
+  padding: 10px;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
