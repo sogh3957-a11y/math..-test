@@ -1,102 +1,138 @@
-body {
-  font-family: Tahoma, sans-serif;
-  background-color: #e0f7f1;
-  color: #333;
-  text-align: right;
-  padding: 20px;
-  margin: 0;
+let MAX_SET = "Z".charCodeAt(0);
+
+// تابع برای محاسبه حرف بعدی بر اساس مجموعه‌های موجود
+function getNextSetLetter() {
+  const labels = document.querySelectorAll(".set-row label");
+  let usedLetters = [];
+
+  labels.forEach(label => {
+    const letter = label.textContent.trim().replace("مجموعه ", "").replace(":", "").trim();
+    if (letter && letter.length === 1 && letter >= 'A' && letter <= 'Z') {
+      usedLetters.push(letter.charCodeAt(0));
+    }
+  });
+
+  if (usedLetters.length === 0) return 'C';
+  const maxCode = Math.max(...usedLetters);
+  const nextCode = maxCode + 1;
+  if (nextCode > MAX_SET) return null;
+  return String.fromCharCode(nextCode);
 }
 
-.container {
-  max-width: 700px;
-  margin-left: 0;
-  margin-right: auto;
-  background-color: #fffaf0;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  display: flex;
-  justify-content: space-between;
+// افزودن مجموعه جدید
+document.getElementById("addSetBtn").addEventListener("click", () => {
+  const nextLetter = getNextSetLetter();
+  if (!nextLetter) return;
+
+  const div = document.createElement("div");
+  div.className = "set-row";
+  div.innerHTML = `
+    <label>مجموعه ${nextLetter}:</label>
+    <input type="text" class="set-input" id="set${nextLetter}" placeholder="اعداد را با نقطه وارد کنید">
+    <button class="remove-btn">×</button>
+  `;
+
+  document.getElementById("extraSets").append(div);
+
+  div.querySelector(".remove-btn").addEventListener("click", () => {
+    div.remove();
+  });
+
+  const input = div.querySelector(".set-input");
+  input.addEventListener("input", () => {
+    const pos = input.selectionStart;
+    input.value = input.value.replace(/\(/g, "{").replace(/\)/g, "}");
+    input.setSelectionRange(pos, pos);
+  });
+});
+
+// مجموعه‌های اولیه A و B
+document.querySelectorAll(".set-input").forEach(input => {
+  input.addEventListener("input", () => {
+    const pos = input.selectionStart;
+    input.value = input.value.replace(/\(/g, "{").replace(/\)/g, "}");
+    input.setSelectionRange(pos, pos);
+  });
+});
+
+// استخراج مجموعه‌ها
+function getSets() {
+  const inputs = document.querySelectorAll(".set-input");
+  const sets = [];
+  inputs.forEach(input => {
+    let val = input.value.trim().replace(/\{/g, "(").replace(/\}/g, ")");
+    let arr = val ? val.split(".").map(Number) : [];
+    sets.push(arr);
+  });
+  return sets;
 }
 
-h1 {
-  color: #ff69b4;
-  text-align: center;
-  margin-top: 0;
+// عملیات‌ها
+const operations = {
+  union: { btn: "unionBtn", answer: "unionAnswer" },
+  intersect: { btn: "interBtn", answer: "interAnswer" },
+  diff: { btn: "diffBtn", answer: "diffAnswer" },
+};
+
+Object.keys(operations).forEach(op => {
+  const btn = document.getElementById(operations[op].btn);
+  const input = document.getElementById(operations[op].answer);
+
+  // بررسی جواب با Enter
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") checkAnswer(op);
+  });
+
+  // نمایش جواب صحیح با کلیک روی دکمه
+  btn.addEventListener("click", () => {
+    showCorrect(op);
+  });
+});
+
+function checkAnswer(op) {
+  const sets = getSets();
+  let result = [];
+
+  if (op === "union") {
+    result = [...new Set(sets.flat())];
+  } else if (op === "intersect") {
+    result = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => b.includes(x))) : [];
+  } else if (op === "diff") {
+    result = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => !b.includes(x))) : [];
+  }
+
+  result.sort((a, b) => a - b);
+  const correct = result.join(".");
+  const input = document.getElementById(operations[op].answer);
+  const userVal = input.value.trim();
+
+  if (userVal === correct) {
+    input.classList.remove("wrong");
+    input.classList.add("correct");
+  } else {
+    input.classList.remove("correct");
+    input.classList.add("wrong");
+    setTimeout(() => input.classList.remove("wrong"), 2000);
+  }
 }
 
-/* بخش مجموعه‌ها سمت چپ */
-.sets-section {
-  width: 48%;
-}
+// نمایش جواب صحیح داخل همان کادر
+function showCorrect(op) {
+  const sets = getSets();
+  let result = [];
 
-/* بخش عملیات و کادرها سمت راست */
-.ops-section {
-  width: 48%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
+  if (op === "union") {
+    result = [...new Set(sets.flat())];
+  } else if (op === "intersect") {
+    result = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => b.includes(x))) : [];
+  } else if (op === "diff") {
+    result = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => !b.includes(x))) : [];
+  }
 
-.set-row {
-  margin-bottom: 15px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.set-row label {
-  width: 90px;
-  font-weight: bold;
-  color: #ff69b4;
-}
-
-.set-input {
-  width: 70%;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.add-btn {
-  width: 45px;
-  height: 45px;
-  font-size: 24px;
-  border-radius: 50%;
-  background-color: #ff69b4;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-/* کادر جواب و دکمه عملیات */
-.op-block {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.answer-input {
-  flex: 1;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.answer-input.correct {
-  background-color: #d4fdd4;
-  border: 2px solid green;
-}
-
-.answer-input.wrong {
-  background-color: #ffd6d6;
-  border: 2px solid red;
-}
-
-.op-btn {
-  padding: 10px;
-  background-color: #ff69b4;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  result.sort((a, b) => a - b);
+  const correct = result.join(".");
+  const input = document.getElementById(operations[op].answer);
+  input.value = correct;
+  input.classList.remove("wrong");
+  input.classList.add("correct");
 }
