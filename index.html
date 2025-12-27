@@ -12,31 +12,43 @@
 
   <h1>عملیات روی مجموعه‌ها</h1>
 
-  <div class="set-row">
-    <label>مجموعه A:</label>
-    <input type="text" class="set-input" id="setA" placeholder="اعداد را با نقطه وارد کنید">
+  <!-- مجموعه‌ها (سمت چپ) -->
+  <div class="sets-section">
+    <div class="set-row">
+      <label>مجموعه A:</label>
+      <input type="text" class="set-input" id="setA" placeholder="اعداد را با نقطه وارد کنید">
+    </div>
+
+    <div class="set-row">
+      <label>مجموعه B:</label>
+      <input type="text" class="set-input" id="setB" placeholder="اعداد را با نقطه وارد کنید">
+    </div>
+
+    <div id="extraSetsContainer">
+      <div id="extraSets"></div>
+      <button id="addSetBtn" class="add-btn">+</button>
+    </div>
   </div>
 
-  <div class="set-row">
-    <label>مجموعه B:</label>
-    <input type="text" class="set-input" id="setB" placeholder="اعداد را با نقطه وارد کنید">
-  </div>
+  <!-- عملیات و کادرهای جواب (سمت راست) -->
+  <div class="ops-section">
+    <!-- کادر جواب و دکمه اجتماع -->
+    <div class="op-block">
+      <input type="text" class="answer-input" id="unionAnswer" placeholder="جواب اجتماع">
+      <button class="op-btn" id="unionBtn">اجتماع</button>
+    </div>
 
-  <div id="extraSetsContainer">
-    <div id="extraSets"></div>
-    <button id="addSetBtn" class="add-btn">+</button>
-  </div>
+    <!-- کادر جواب و دکمه اشتراک -->
+    <div class="op-block">
+      <input type="text" class="answer-input" id="interAnswer" placeholder="جواب اشتراک">
+      <button class="op-btn" id="interBtn">اشتراک</button>
+    </div>
 
-  <div class="ops">
-    <button class="op-btn" id="unionBtn">اجتماع</button>
-    <button class="op-btn" id="interBtn">اشتراک</button>
-    <button class="op-btn" id="diffBtn">تفاضل</button>
-  </div>
-
-  <div id="answerSection" class="answer-section hidden">
-    <input type="text" id="userAnswer" class="answer-input" placeholder="جواب را وارد کنید">
-    <button id="checkBtn">نمایش جواب</button>
-    <div id="correctAnswer" class="correct-answer"></div>
+    <!-- کادر جواب و دکمه تفاضل -->
+    <div class="op-block">
+      <input type="text" class="answer-input" id="diffAnswer" placeholder="جواب تفاضل">
+      <button class="op-btn" id="diffBtn">تفاضل</button>
+    </div>
   </div>
 
 </div>
