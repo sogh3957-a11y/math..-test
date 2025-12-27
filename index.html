@@ -8,12 +8,13 @@
 </head>
 <body>
 
-<div class="container">
+<h1 class="title">عملیات روی مجموعه‌ها</h1>
 
-  <h1 class="title-single-line">عملیات روی مجموعه‌ها</h1>
+<div class="main-layout">
 
-  <!-- مجموعه‌ها زیر عنوان (سمت چپ) -->
-  <div class="sets-section">
+  <!-- ستون چپ: مجموعه‌ها -->
+  <div class="left-panel">
+
     <div class="set-row">
       <label>مجموعه A:</label>
       <input type="text" class="set-input" id="setA" placeholder="اعداد را با نقطه وارد کنید">
@@ -24,28 +25,24 @@
       <input type="text" class="set-input" id="setB" placeholder="اعداد را با نقطه وارد کنید">
     </div>
 
-    <div id="extraSetsContainer">
-      <div id="extraSets"></div>
-      <button id="addSetBtn" class="add-btn">+</button>
-    </div>
+    <div id="extraSets"></div>
+
+    <button id="addSetBtn" class="add-btn">+</button>
+
   </div>
 
-  <!-- عملیات و کادرهای جواب (سمت راست) -->
-  <div class="ops-section">
-    <div class="op-block">
-      <input type="text" class="answer-input" id="unionAnswer" placeholder="جواب اجتماع">
-      <button class="op-btn" id="unionBtn">اجتماع</button>
+  <!-- ستون راست: عملیات و جواب -->
+  <div class="right-panel">
+
+    <input type="text" id="answerBox" class="answer-box"
+           placeholder="جواب را وارد کنید و Enter بزنید">
+
+    <div class="ops">
+      <button class="op-btn" data-op="union">اجتماع</button>
+      <button class="op-btn" data-op="intersect">اشتراک</button>
+      <button class="op-btn" data-op="diff">تفاضل</button>
     </div>
 
-    <div class="op-block">
-      <input type="text" class="answer-input" id="interAnswer" placeholder="جواب اشتراک">
-      <button class="op-btn" id="interBtn">اشتراک</button>
-    </div>
-
-    <div class="op-block">
-      <input type="text" class="answer-input" id="diffAnswer" placeholder="جواب تفاضل">
-      <button class="op-btn" id="diffBtn">تفاضل</button>
-    </div>
   </div>
 
 </div>
