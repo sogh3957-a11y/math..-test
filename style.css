@@ -19,10 +19,11 @@ body {
   justify-content: space-between;
 }
 
-h1 {
-  color: #ff69b4;
+.title-single-line {
   text-align: center;
   margin-top: 0;
+  color: #ff69b4;
+  white-space: nowrap; /* اطمینان از یک خط بودن */
 }
 
 /* بخش مجموعه‌ها سمت چپ */
