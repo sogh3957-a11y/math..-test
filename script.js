@@ -1,26 +1,53 @@
-let nextSetLetter = "C"; 
 let currentOperation = "";
 const MAX_SET = "Z".charCodeAt(0);
 
+// تابع برای محاسبه حرف بعدی بر اساس مجموعه‌های موجود
+function getNextSetLetter() {
+  // تمام labelها رو بگیر (A, B, و extraها)
+  const labels = document.querySelectorAll(".set-row label");
+  let usedLetters = [];
+  
+  labels.forEach(label => {
+    // استخراج حرف از متن label (مثل "مجموعه X:" → 'X')
+    const letter = label.textContent.trim().replace("مجموعه ", "").replace(":", "").trim();
+    if (letter && letter.length === 1 && letter >= 'A' && letter <= 'Z') {
+      usedLetters.push(letter.charCodeAt(0));
+    }
+  });
+  
+  // اگر هیچ حرفی نبود (که نباید باشه، چون حداقل A هست)، از 'C' شروع کن
+  if (usedLetters.length === 0) return 'C';
+  
+  // بیشترین کد اسکی رو پیدا کن و +1 کن
+  const maxCode = Math.max(...usedLetters);
+  const nextCode = maxCode + 1;
+  
+  // چک محدودیت Z
+  if (nextCode > MAX_SET) return null; // اگر بیشتر از Z بود، null برگردون
+  
+  return String.fromCharCode(nextCode);
+}
+
 // افزودن مجموعه جدید بالای دکمه +
 document.getElementById("addSetBtn").addEventListener("click", () => {
-  if (nextSetLetter.charCodeAt(0) > MAX_SET) return; // محدودیت تا Z
-
+  const nextLetter = getNextSetLetter();
+  if (!nextLetter) return; // اگر به Z رسید، اضافه نکن
+  
   const div = document.createElement("div");
   div.className = "set-row";
   div.innerHTML = `
-    <label>مجموعه ${nextSetLetter}:</label>
-    <input type="text" class="set-input" id="set${nextSetLetter}" placeholder="اعداد را با نقطه وارد کنید">
+    <label>مجموعه ${nextLetter}:</label>
+    <input type="text" class="set-input" id="set${nextLetter}" placeholder="اعداد را با نقطه وارد کنید">
     <button class="remove-btn">×</button>
   `;
   const extraSetsDiv = document.getElementById("extraSets");
   extraSetsDiv.prepend(div);
-
+  
   // دکمه حذف مجموعه
   div.querySelector(".remove-btn").addEventListener("click", () => {
     div.remove();
   });
-
+  
   // listener برای پرانتز → نمایش اکولاد
   const input = div.querySelector(".set-input");
   input.addEventListener("input", () => {
@@ -28,9 +55,6 @@ document.getElementById("addSetBtn").addEventListener("click", () => {
     input.value = input.value.replace(/\(/g, "{").replace(/\)/g, "}");
     input.setSelectionRange(cursorPos, cursorPos);
   });
-
-  // بعد از اضافه کردن، nextSetLetter را افزایش بده
-  nextSetLetter = String.fromCharCode(nextSetLetter.charCodeAt(0) + 1);
 });
 
 // اعمال listener روی مجموعه‌های اولیه (A و B) برای پرانتز → اکولاد
@@ -74,7 +98,6 @@ document.getElementById("checkBtn").onclick = checkAnswer;
 function checkAnswer() {
   let sets = getSets();
   let finalResult;
-
   if (currentOperation === "union") {
     finalResult = [...new Set(sets.flat())];
   } else if (currentOperation === "intersect") {
@@ -82,12 +105,9 @@ function checkAnswer() {
   } else if (currentOperation === "diff") {
     finalResult = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => !b.includes(x))) : [];
   }
-
   finalResult.sort((a, b) => a - b);
   let correct = finalResult.join(".");
-
   let user = document.getElementById("userAnswer").value.trim();
-
   if (user === correct) {
     document.getElementById("userAnswer").classList.remove("wrong");
     document.getElementById("correctAnswer").innerHTML = "✔ جواب صحیح است";
