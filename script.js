@@ -1,17 +1,14 @@
 let MAX_SET = "Z".charCodeAt(0);
 
-// تابع برای محاسبه حرف بعدی بر اساس مجموعه‌های موجود
 function getNextSetLetter() {
   const labels = document.querySelectorAll(".set-row label");
   let usedLetters = [];
-
   labels.forEach(label => {
     const letter = label.textContent.trim().replace("مجموعه ", "").replace(":", "").trim();
     if (letter && letter.length === 1 && letter >= 'A' && letter <= 'Z') {
       usedLetters.push(letter.charCodeAt(0));
     }
   });
-
   if (usedLetters.length === 0) return 'C';
   const maxCode = Math.max(...usedLetters);
   const nextCode = maxCode + 1;
@@ -31,12 +28,9 @@ document.getElementById("addSetBtn").addEventListener("click", () => {
     <input type="text" class="set-input" id="set${nextLetter}" placeholder="اعداد را با نقطه وارد کنید">
     <button class="remove-btn">×</button>
   `;
-
   document.getElementById("extraSets").append(div);
 
-  div.querySelector(".remove-btn").addEventListener("click", () => {
-    div.remove();
-  });
+  div.querySelector(".remove-btn").addEventListener("click", () => div.remove());
 
   const input = div.querySelector(".set-input");
   input.addEventListener("input", () => {
@@ -78,28 +72,20 @@ Object.keys(operations).forEach(op => {
   const btn = document.getElementById(operations[op].btn);
   const input = document.getElementById(operations[op].answer);
 
-  // بررسی جواب با Enter
   input.addEventListener("keydown", e => {
     if (e.key === "Enter") checkAnswer(op);
   });
 
-  // نمایش جواب صحیح با کلیک روی دکمه
-  btn.addEventListener("click", () => {
-    showCorrect(op);
-  });
+  btn.addEventListener("click", () => showCorrect(op));
 });
 
 function checkAnswer(op) {
   const sets = getSets();
   let result = [];
 
-  if (op === "union") {
-    result = [...new Set(sets.flat())];
-  } else if (op === "intersect") {
-    result = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => b.includes(x))) : [];
-  } else if (op === "diff") {
-    result = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => !b.includes(x))) : [];
-  }
+  if (op === "union") result = [...new Set(sets.flat())];
+  else if (op === "intersect") result = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => b.includes(x))) : [];
+  else if (op === "diff") result = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => !b.includes(x))) : [];
 
   result.sort((a, b) => a - b);
   const correct = result.join(".");
@@ -116,18 +102,14 @@ function checkAnswer(op) {
   }
 }
 
-// نمایش جواب صحیح داخل همان کادر
+// نمایش جواب صحیح
 function showCorrect(op) {
   const sets = getSets();
   let result = [];
 
-  if (op === "union") {
-    result = [...new Set(sets.flat())];
-  } else if (op === "intersect") {
-    result = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => b.includes(x))) : [];
-  } else if (op === "diff") {
-    result = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => !b.includes(x))) : [];
-  }
+  if (op === "union") result = [...new Set(sets.flat())];
+  else if (op === "intersect") result = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => b.includes(x))) : [];
+  else if (op === "diff") result = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => !b.includes(x))) : [];
 
   result.sort((a, b) => a - b);
   const correct = result.join(".");
