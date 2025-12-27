@@ -23,15 +23,15 @@ function getNextSetLetter() {
   const nextCode = maxCode + 1;
   
   // چک محدودیت Z
-  if (nextCode > MAX_SET) return null; // اگر بیشتر از Z بود، null برگردون
+  if (nextCode > MAX_SET) return null;
   
   return String.fromCharCode(nextCode);
 }
 
-// افزودن مجموعه جدید بالای دکمه +
+// افزودن مجموعه جدید (پایینِ قبلی‌ها)
 document.getElementById("addSetBtn").addEventListener("click", () => {
   const nextLetter = getNextSetLetter();
-  if (!nextLetter) return; // اگر به Z رسید، اضافه نکن
+  if (!nextLetter) return;
   
   const div = document.createElement("div");
   div.className = "set-row";
@@ -40,15 +40,16 @@ document.getElementById("addSetBtn").addEventListener("click", () => {
     <input type="text" class="set-input" id="set${nextLetter}" placeholder="اعداد را با نقطه وارد کنید">
     <button class="remove-btn">×</button>
   `;
+  
   const extraSetsDiv = document.getElementById("extraSets");
-  extraSetsDiv.prepend(div);
+  extraSetsDiv.append(div); // ⬅️ اصلاح اصلی: append به‌جای prepend
   
   // دکمه حذف مجموعه
   div.querySelector(".remove-btn").addEventListener("click", () => {
     div.remove();
   });
   
-  // listener برای پرانتز → نمایش اکولاد
+  // listener برای پرانتز → اکولاد
   const input = div.querySelector(".set-input");
   input.addEventListener("input", () => {
     const cursorPos = input.selectionStart;
@@ -57,7 +58,7 @@ document.getElementById("addSetBtn").addEventListener("click", () => {
   });
 });
 
-// اعمال listener روی مجموعه‌های اولیه (A و B) برای پرانتز → اکولاد
+// listener برای مجموعه‌های اولیه (A و B)
 document.querySelectorAll(".set-input").forEach(input => {
   input.addEventListener("input", () => {
     const cursorPos = input.selectionStart;
@@ -70,16 +71,18 @@ document.querySelectorAll(".set-input").forEach(input => {
 function getSets() {
   let inputs = document.querySelectorAll(".set-input");
   let sets = [];
+  
   inputs.forEach(input => {
     let val = input.value.trim();
     val = val.replace(/\{/g, "(").replace(/\}/g, ")");
     let arr = val ? val.split(".").map(Number) : [];
     sets.push(arr);
   });
+  
   return sets;
 }
 
-// کلیک روی دکمه‌های عملیات
+// دکمه‌های عملیات
 document.getElementById("unionBtn").onclick = () => showAnswerBox("union");
 document.getElementById("interBtn").onclick = () => showAnswerBox("intersect");
 document.getElementById("diffBtn").onclick = () => showAnswerBox("diff");
@@ -98,16 +101,23 @@ document.getElementById("checkBtn").onclick = checkAnswer;
 function checkAnswer() {
   let sets = getSets();
   let finalResult;
+  
   if (currentOperation === "union") {
     finalResult = [...new Set(sets.flat())];
   } else if (currentOperation === "intersect") {
-    finalResult = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => b.includes(x))) : [];
+    finalResult = sets.length > 0
+      ? sets.reduce((a, b) => a.filter(x => b.includes(x)))
+      : [];
   } else if (currentOperation === "diff") {
-    finalResult = sets.length > 0 ? sets.reduce((a, b) => a.filter(x => !b.includes(x))) : [];
+    finalResult = sets.length > 0
+      ? sets.reduce((a, b) => a.filter(x => !b.includes(x)))
+      : [];
   }
+  
   finalResult.sort((a, b) => a - b);
   let correct = finalResult.join(".");
   let user = document.getElementById("userAnswer").value.trim();
+  
   if (user === correct) {
     document.getElementById("userAnswer").classList.remove("wrong");
     document.getElementById("correctAnswer").innerHTML = "✔ جواب صحیح است";
