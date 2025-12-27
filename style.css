@@ -17,6 +17,7 @@ body {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap; /* برای نظم بهتر در صورت کوچک شدن صفحه */
 }
 
 .title-single-line {
@@ -24,19 +25,13 @@ body {
   margin-top: 0;
   color: #ff69b4;
   white-space: nowrap; /* اطمینان از یک خط بودن */
+  width: 100%;
 }
 
-/* بخش مجموعه‌ها سمت چپ */
+/* بخش مجموعه‌ها زیر عنوان (سمت چپ) */
 .sets-section {
   width: 48%;
-}
-
-/* بخش عملیات و کادرها سمت راست */
-.ops-section {
-  width: 48%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  margin-top: 10px; /* فاصله از عنوان */
 }
 
 .set-row {
@@ -69,7 +64,14 @@ body {
   cursor: pointer;
 }
 
-/* کادر جواب و دکمه عملیات */
+/* بخش عملیات و کادرها سمت راست */
+.ops-section {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .op-block {
   display: flex;
   gap: 10px;
