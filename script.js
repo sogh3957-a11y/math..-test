@@ -102,7 +102,6 @@ function checkAnswer(op) {
   }
 }
 
-// نمایش جواب صحیح
 function showCorrect(op) {
   const sets = getSets();
   let result = [];
