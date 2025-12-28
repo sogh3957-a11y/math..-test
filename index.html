@@ -8,43 +8,48 @@
 </head>
 <body>
 
-<h1 class="title">عملیات روی مجموعه‌ها</h1>
+<h1>عملیات روی مجموعه‌ها</h1>
 
-<div class="main-layout">
+<div class="layout">
 
-  <!-- ستون چپ: مجموعه‌ها -->
-  <div class="left-panel">
-
+  <!-- سمت چپ: مجموعه‌ها -->
+  <div class="sets-box">
     <div class="set-row">
       <label>مجموعه A:</label>
-      <input type="text" class="set-input" id="setA" placeholder="اعداد را با نقطه وارد کنید">
+      <input class="set-input">
     </div>
 
     <div class="set-row">
       <label>مجموعه B:</label>
-      <input type="text" class="set-input" id="setB" placeholder="اعداد را با نقطه وارد کنید">
+      <input class="set-input">
     </div>
 
     <div id="extraSets"></div>
-
     <button id="addSetBtn" class="add-btn">+</button>
-
   </div>
 
-  <!-- ستون راست: عملیات و جواب -->
-  <div class="right-panel">
+  <!-- سمت راست: عملیات -->
+  <div class="ops-box">
 
-    <input type="text" id="answerBox" class="answer-box"
-           placeholder="جواب را وارد کنید و Enter بزنید">
+    <div class="op-block" data-op="union">
+      <h3>اجتماع</h3>
+      <input class="answer-input">
+      <button>نمایش جواب</button>
+    </div>
 
-    <div class="ops">
-      <button class="op-btn" data-op="union">اجتماع</button>
-      <button class="op-btn" data-op="intersect">اشتراک</button>
-      <button class="op-btn" data-op="diff">تفاضل</button>
+    <div class="op-block" data-op="intersect">
+      <h3>اشتراک</h3>
+      <input class="answer-input">
+      <button>نمایش جواب</button>
+    </div>
+
+    <div class="op-block" data-op="diff">
+      <h3>تفاضل</h3>
+      <input class="answer-input">
+      <button>نمایش جواب</button>
     </div>
 
   </div>
-
 </div>
 
 <script src="script.js"></script>
