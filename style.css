@@ -1,100 +1,53 @@
 body {
-  font-family: Tahoma, sans-serif;
-  background-color: #e0f7f1;
-  color: #333;
-  text-align: right;
+  font-family: Tahoma;
+  background: #e0f7f1;
   padding: 20px;
-  margin: 0;
+  text-align: right;
 }
 
-.title {
+h1 {
   text-align: center;
   color: #ff69b4;
-  margin-bottom: 20px;
 }
 
-/* چیدمان اصلی */
-.main-layout {
+.layout {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  gap: 20px;
 }
 
-/* ستون چپ */
-.left-panel {
+.sets-box {
   width: 45%;
-  background-color: #fffaf0;
+  background: #fffaf0;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .set-row {
-  margin-bottom: 15px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-
-.set-row label {
-  width: 90px;
-  font-weight: bold;
-  color: #ff69b4;
+  margin-bottom: 10px;
 }
 
 .set-input {
   width: 70%;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
 }
 
 .add-btn {
-  width: 45px;
-  height: 45px;
-  font-size: 24px;
-  border-radius: 50%;
-  background-color: #ff69b4;
-  color: white;
-  border: none;
-  cursor: pointer;
+  margin-top: 10px;
 }
 
-/* ستون راست */
-.right-panel {
+.ops-box {
   width: 45%;
-  padding: 20px;
 }
 
-.answer-box {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  margin-bottom: 15px;
+.op-block {
+  margin-bottom: 20px;
 }
 
-.answer-box.correct {
-  background-color: #d4f8d4;
-  border: 2px solid green;
+.answer-input.correct {
+  background: #c8f7c5;
 }
 
-.answer-box.wrong {
-  background-color: #ffd6d6;
-  border: 2px solid red;
-}
-
-.ops {
-  display: flex;
-  justify-content: space-between;
-}
-
-.op-btn {
-  flex: 1;
-  margin: 0 5px;
-  padding: 10px;
-  background-color: #ff69b4;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.answer-input.wrong {
+  background: #f7c5c5;
 }
