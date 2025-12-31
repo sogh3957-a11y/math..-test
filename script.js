@@ -100,13 +100,15 @@ function calculateResult(operation) {
 
 
 /****************************************
-  بخش 4: رفتار هر عملیات (کاملاً مستقل)
+  بخش 4: رفتار هر عملیات (مستقل + تایم‌اوت)
 *****************************************/
 
 document.querySelectorAll(".op-block").forEach(block => {
   const operation = block.dataset.op;
   const input = block.querySelector(".answer-input");
   const button = block.querySelector("button");
+
+  let colorTimeout = null;
 
   // Enter → بررسی جواب
   input.addEventListener("keydown", e => {
@@ -115,6 +117,12 @@ document.querySelectorAll(".op-block").forEach(block => {
     const correctAnswer = calculateResult(operation).join(".");
     const userAnswer = input.value.trim();
 
+    // پاک کردن تایمر قبلی
+    if (colorTimeout) {
+      clearTimeout(colorTimeout);
+      colorTimeout = null;
+    }
+
     input.classList.remove("correct", "wrong");
 
     if (userAnswer === correctAnswer) {
@@ -122,12 +130,22 @@ document.querySelectorAll(".op-block").forEach(block => {
     } else {
       input.classList.add("wrong");
     }
+
+    // حذف رنگ بعد از ۲ ثانیه
+    colorTimeout = setTimeout(() => {
+      input.classList.remove("correct", "wrong");
+      colorTimeout = null;
+    }, 2000);
   });
 
-  // دکمه → نمایش جواب درست
+  // دکمه نمایش جواب → بدون رنگ
   button.addEventListener("click", () => {
+    if (colorTimeout) {
+      clearTimeout(colorTimeout);
+      colorTimeout = null;
+    }
+
     input.value = calculateResult(operation).join(".");
-    input.classList.remove("wrong");
-    input.classList.add("correct");
+    input.classList.remove("correct", "wrong");
   });
 });
