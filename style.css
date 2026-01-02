@@ -32,9 +32,30 @@ h1 {
   width: 70%;
 }
 
+/* ⬇⬇⬇ تنها تغییر همینجاست ⬇⬇⬇ */
 .add-btn {
-  margin-top: 10px;
+  width: 45px;
+  height: 45px;
+  font-size: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4fa3a5, #2f7f7a);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(47, 127, 122, 0.35);
+  transition: all 0.25s ease;
 }
+
+.add-btn:hover {
+  background: linear-gradient(135deg, #5fb8ba, #3a918c);
+  transform: scale(1.05);
+}
+
+.add-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(47, 127, 122, 0.4);
+}
+/* ⬆⬆⬆ فقط همین ⬆⬆⬆ */
 
 .ops-box {
   width: 45%;
